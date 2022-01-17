@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string "email"
       t.datetime "date_of_birth"
       t.string "address"
+      t.timestamps
     end
   end
 end
