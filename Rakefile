@@ -3,7 +3,7 @@
 
 require_relative './config/environment'
 require_relative "config/application"
-require "sinatra/activerecord/rake"
+# require "sinatra/activerecord/rake"
 
 namespace :db do
   task :load_config do

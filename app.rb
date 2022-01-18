@@ -1,1 +1,2 @@
-require "sinatra/activerecord"
+# require "sinatra/activerecord"
+# require "rack-cors"

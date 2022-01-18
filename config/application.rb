@@ -18,4 +18,13 @@ module AuctionAppBackend
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
   end
+  
+
+  #CORS security, change "origins" if you want to change location
+  Rails.application.config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins 'http://localhost:3001'
+      resource '*', headers: :any, methods: [:get, :post, :delete, :patch]
+    end
+  end
 end

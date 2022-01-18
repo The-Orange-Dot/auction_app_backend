@@ -10,16 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_14_105557) do
+ActiveRecord::Schema.define(version: 2022_01_17_162222) do
+
+  create_table "products", force: :cascade do |t|
+    t.string "category"
+    t.string "name"
+    t.string "descriptionPreview"
+    t.string "description"
+    t.string "images"
+    t.integer "price"
+    t.integer "ticketsRemaining"
+    t.integer "tickets"
+    t.integer "keywords"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "firstName"
+    t.string "lastName"
     t.string "username"
     t.string "password"
+    t.string "picture"
+    t.integer "points"
     t.string "email"
-    t.datetime "date_of_birth"
+    t.datetime "dateOfBirth"
     t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating"
   end
 
 end
