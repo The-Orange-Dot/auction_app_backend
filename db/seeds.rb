@@ -9,7 +9,7 @@ puts "Seeding..."
     password: Faker::Internet.password(min_length: 8),
     dateOfBirth: Faker::Date.birthday(min_age: 18, max_age: 65),
     email: Faker::Internet.email,
-    picture: Faker::Placeholdit.image,
+    picture: "https://www.peachridgeglass.com/wp-content/uploads/2013/07/MoxieAd1.jpg",
     points: rand(1000...20000),
     address: Faker::Address.full_address
   )
@@ -112,5 +112,19 @@ Product.create(
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 
+# 10.times do
+# Product.create(
+#   name: "Vintage Hasselblad | SH 503CX Vintage Camera ",
+#   category: "electronics",
+#   descriptionPreview: "Camera is in good condition",
+#   description: "This is a full description of the camera. It is in good condition. blah blah blah blah",
+#   images: "http://www.progear.co.nz/repository/product/hasselblad%20sh%20503cx%20body%2080mm%20planar%2050mm%20distagon%20kit.png?width=400&amp;height=400&amp;mode=pad",
+#   price: 300000,
+#   ticketsRemaining: 20,
+#   tickets: 20,
+#   keywords: ["camera, vintage, slr, film"],
+#   user_id: User.all.first.id
+# )
+# end
 
 puts "Finished!!"
