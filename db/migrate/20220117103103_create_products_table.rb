@@ -9,7 +9,7 @@ class CreateProductsTable < ActiveRecord::Migration[6.1]
       t.integer :price
       t.integer :ticketsRemaining
       t.integer :tickets
-      t.integer :keywords
+      t.string :keywords
       t.integer :user_id
       t.timestamps
     end

@@ -1,6 +1,19 @@
 
 puts "Seeding..."
 
+# User.create(
+#   id: 0,
+#   firstName: "default", 
+#   lastName: "default",
+#   username: "default_User",
+#   password: Faker::Internet.password(min_length: 8),
+#   dateOfBirth: Faker::Date.birthday(min_age: 18, max_age: 65),
+#   email: Faker::Internet.email,
+#   picture: "https://www.peachridgeglass.com/wp-content/uploads/2013/07/MoxieAd1.jpg",
+#   points: rand(1000...20000),
+#   address: Faker::Address.full_address
+# )
+
 20.times do
   User.create(
     firstName: Faker::Name.first_name, 
@@ -24,7 +37,7 @@ Product.create(
   price: 20000,
   ticketsRemaining: 8,
   tickets: 10,
-  keywords: ["sake, alcohol, drinks, hakushu"],
+  keywords: "sake, alcohol, drinks, hakushu",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 Product.create(
@@ -36,7 +49,7 @@ Product.create(
   price: 103500,
   ticketsRemaining: 3,
   tickets: 20,
-  keywords: ["dslr, camera, digital, electronics"],
+  keywords: "dslr, camera, digital, electronics",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 Product.create(
@@ -48,7 +61,7 @@ Product.create(
   price: 650000,
   ticketsRemaining: 48,
   tickets: 50,
-  keywords: ["coat, fashion, jacket, luis"],
+  keywords: "coat, fashion, jacket, luis",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 Product.create(
@@ -60,7 +73,7 @@ Product.create(
   price: 105000,
   ticketsRemaining: 5,
   tickets: 20,
-  keywords: ["iphone, smartphone, phone, sim free"],
+  keywords: "iphone, smartphone, phone, sim free",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 Product.create(
@@ -72,7 +85,7 @@ Product.create(
   price: 41001,
   ticketsRemaining: 2,
   tickets: 20,
-  keywords: ["nike, shoes, jordans, new"],
+  keywords: "nike, shoes, jordans, new",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 Product.create(
@@ -84,7 +97,7 @@ Product.create(
   price: 218000,
   ticketsRemaining: 35,
   tickets: 50,
-  keywords: ["headphones, ultrasone, overear, music"],
+  keywords: "headphones, ultrasone, overear, music",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 Product.create(
@@ -96,7 +109,7 @@ Product.create(
   price: 248000,
   ticketsRemaining: 3,
   tickets: 10,
-  keywords: ["guitar, fender, collectors, music"],
+  keywords: "guitar, fender, collectors, music",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 Product.create(
@@ -108,7 +121,7 @@ Product.create(
   price: 300000,
   ticketsRemaining: 20,
   tickets: 20,
-  keywords: ["camera, vintage, slr, film"],
+  keywords: "camera, vintage, slr, film",
   user_id: rand(User.all.first.id..User.all.last.id)
 )
 

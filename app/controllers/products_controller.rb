@@ -19,7 +19,9 @@ class ProductsController < ApplicationController
       ticketsRemaining: params[:tickets],
       tickets: params[:tickets],
       keywords: params[:keywords],
-      user_id: User.all.first.id
+      user_id: params[:user_id],
+      buyers: nil,
+      finished: 0
     )
     json_response(new_product)
   end
