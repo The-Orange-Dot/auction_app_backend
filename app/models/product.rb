@@ -5,5 +5,9 @@ class Product < ActiveRecord::Base
     self.buyers.split(", ")
   end
 
+  def find_seller
+    User.find(self.user_id)
+  end
+
   
 end

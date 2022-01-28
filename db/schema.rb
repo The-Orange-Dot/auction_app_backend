@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_112725) do
+ActiveRecord::Schema.define(version: 2022_01_28_120841) do
 
   create_table "products", force: :cascade do |t|
     t.string "category"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(version: 2022_01_21_112725) do
     t.integer "winner"
   end
 
+  create_table "user_buyer_and_seller_rankings", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "firstName"
     t.string "lastName"
@@ -42,7 +47,16 @@ ActiveRecord::Schema.define(version: 2022_01_21_112725) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "rating"
+    t.float "buyer_rating"
+    t.float "seller_rating"
+    t.date "dob"
+    t.integer "tickets_bought"
+    t.boolean "verified"
+  end
+
+  create_table "verified_seller_columns", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

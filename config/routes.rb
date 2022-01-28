@@ -11,8 +11,10 @@ Rails.application.routes.draw do
 
   get "products" => "products#index"
   get "products/:id" => "products#show"
+  get "products/seller/:id" => "products#find_seller"
   post "products" => "products#create"
   delete "products/:id" => "products#delete"
+  
   
 
 end

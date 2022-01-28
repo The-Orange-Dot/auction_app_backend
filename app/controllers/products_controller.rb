@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    json_response(Product.all)
+    json_response(Product.all.order("id desc"))
   end
 
   def show
@@ -23,7 +23,8 @@ class ProductsController < ApplicationController
       buyers: nil,
       finished: 0
     )
-    json_response(new_product)
+    # json_response(new_product)
+    json_response(Product.all.order("id desc"))
   end
 
   def delete
@@ -36,6 +37,11 @@ class ProductsController < ApplicationController
     item.update(
       ticketsRemaining: params[:ticketsRemaining]
     )
+  end
+
+  def find_seller
+    user_id = Product.all.find(params[:id]).user_id
+    json_response(User.all.find(user_id))
   end
 
 end
