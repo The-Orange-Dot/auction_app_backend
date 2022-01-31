@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   # before_action :users, only: [:show, :update, :destroy]
 
   def index
-    render json: User.all.as_json(include: :products)
+    render json: User.all.as_json(include: :products), except: [:password]
   end
 
   def show
-    render json: User.all.find(params[:id]).as_json(include: :products)
+    render json: User.all.find(params[:id]), include: [:products]
   end
 
   def create
@@ -35,12 +35,14 @@ class UsersController < ApplicationController
     buyers = product.buyers == nil ? "#{user.id}" : "#{product.buyers}, #{user.id}"
     split_buyers = buyers.split(", ")
     split_buyers_int = split_buyers.map{|i| i.to_i}
-    winner = rand(split_buyers_int[0]..split_buyers_int[-1])
+    randNumGen = rand(split_buyers_int.length() - 1)
+    winner = split_buyers_int[randNumGen]
 
     if user.points > ticket_value && product.finished == false
       user.update(points: user.points - ticket_value)
       product.update(ticketsRemaining: product.ticketsRemaining - 1, buyers: buyers)
       product.ticketsRemaining == 0 ? product.update(finished: 1, winner: winner) : nil
+      render json: product
     elsif user.points < ticker_value
       puts "Not enough points"
     else 
@@ -51,7 +53,7 @@ class UsersController < ApplicationController
   def find_buy_items
     user = User.all.find(params[:id])
     product = Product.where(buyers: user.id)
-    render json: product.as_json
+    render json: product, only: [:username, :picture, :seller_rating, :verified]
   end
 
 end

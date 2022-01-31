@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_120841) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "buyers"
     t.boolean "finished", default: false
-    t.integer "winner"
+    t.integer "winner", default: 0
   end
 
   create_table "user_buyer_and_seller_rankings", force: :cascade do |t|
@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(version: 2022_01_28_120841) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "buyer_rating"
-    t.float "seller_rating"
+    t.float "buyer_rating", default: 0.0
+    t.float "seller_rating", default: 0.0
     t.date "dob"
-    t.integer "tickets_bought"
-    t.boolean "verified"
+    t.integer "tickets_bought", default: 0
+    t.boolean "verified", default: false
   end
 
   create_table "verified_seller_columns", force: :cascade do |t|

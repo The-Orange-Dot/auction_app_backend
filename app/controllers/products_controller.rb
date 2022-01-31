@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
 
   def index
-    json_response(Product.all.order("id desc"))
+    render json: Product.all.order("id desc")
   end
 
   def show
-    json_response(Product.all.find(params[:id]))
+    render json: Product.all.find(params[:id])
   end
 
   def create
@@ -20,14 +20,12 @@ class ProductsController < ApplicationController
       tickets: params[:tickets],
       keywords: params[:keywords],
       user_id: params[:user_id],
-      buyers: nil,
-      finished: 0
     )
     # json_response(new_product)
     json_response(Product.all.order("id desc"))
   end
 
-  def delete
+  def destroy
     item = Product.all.find(params[:id])
     item.destroy
   end
