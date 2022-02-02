@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem "sinatra-activerecord"
 gem "rake"
 gem 'pry', '~> 0.13.1'
+gem "active_model_serializers"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

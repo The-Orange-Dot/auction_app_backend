@@ -1,34 +1,32 @@
 class UsersController < ApplicationController
-  # before_action :users, only: [:show, :update, :destroy]
 
   def index
-    render json: User.all.as_json(include: :products), except: [:password]
+    render json: User.all, include: [:products]
   end
 
   def show
-    render json: User.all.find(params[:id]), include: [:products]
+    render json: User.find_by(id: params[:id]), include: [:products]
   end
 
   def create
     newParams = params[:user_id] - 1
-    User.create(newParams)
-  end
-
-  def show_products
-    render json: User.all.find(params[:id]).products.as_json
+    user = User.create!(newParams)
+    render json: user
+  rescue ActiveRecord::RecordInvalid => invalid
+    render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
   end
 
   def charge_points
     if (params[:points_id] == 1 && params[:charge] == 500) || (params[:points_id] == 2 && params[:charge] == 1000) || (params[:points_id] == 3 && params[:charge] == 5000)
-      user = User.all.find(params[:id])
-      user.update(points: user.points + params[:charge])
+      user = User.find(params[:id])
+      render json: user.update(points: user.points + params[:charge])
     else
       puts "Invalid id and points"
     end
   end
 
   def buy_ticket
-    user = User.all.find(params[:id])
+    user = find_user
     product = Product.all.find(params[:product_id])
     ticket_value = product.price / product.tickets
 
@@ -39,21 +37,21 @@ class UsersController < ApplicationController
     winner = split_buyers_int[randNumGen]
 
     if user.points > ticket_value && product.finished == false
-      user.update(points: user.points - ticket_value)
+      user.update(points: user.points - ticket_value, tickets_bought: user.tickets_bought + 1)
       product.update(ticketsRemaining: product.ticketsRemaining - 1, buyers: buyers)
       product.ticketsRemaining == 0 ? product.update(finished: 1, winner: winner) : nil
-      render json: product
-    elsif user.points < ticker_value
+      render json: Product.all, include: [:user]
+    elsif user.points < ticket_value
       puts "Not enough points"
     else 
       puts "This product is finished!"
     end
   end
 
-  def find_buy_items
-    user = User.all.find(params[:id])
-    product = Product.where(buyers: user.id)
-    render json: product, only: [:username, :picture, :seller_rating, :verified]
+  private
+
+  def find_user
+    User.find_by(id: params[:id])
   end
 
 end
