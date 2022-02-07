@@ -21,12 +21,13 @@ class ProductsController < ApplicationController
       keywords: params[:keywords],
       user_id: params[:user_id],
     )
-  render json: new_product, include: [:user]
+  render json: new_product
   end
 
   def destroy
     item = Product.all.find(params[:id])
     item.destroy
+    render json: item
   end
 
 end

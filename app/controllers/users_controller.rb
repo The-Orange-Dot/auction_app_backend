@@ -1,16 +1,25 @@
 class UsersController < ApplicationController
+  before_action :show
 
-  def index
-    render json: User.all, include: [:products]
-  end
+  # def index 
+  #   render json: User.all, include: [:products]
+  # end
 
+  #WHYYYYYYY NO WORRRRK
   def show
-    render json: User.find_by(id: params[:id]), include: [:products]
+    puts "UserController: #{session}"
+    puts "UserControllerCookies: #{session[:user_id]}"
+    user = User.find_by(id: session[:user_id])
+    # user = User.find_by(id: params[:id])
+    if user
+      render json: user, include: [:products]
+    else
+      render json: {error: "User could not be found."}
+    end
   end
 
   def create
-    newParams = params[:user_id] - 1
-    user = User.create!(newParams)
+    user = User.create!(user_params)
     render json: user
   rescue ActiveRecord::RecordInvalid => invalid
     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
@@ -52,6 +61,10 @@ class UsersController < ApplicationController
 
   def find_user
     User.find_by(id: params[:id])
+  end
+
+  def user_params
+    params.permit(:firstName, :lastName, :email, :username, :password, :dob)
   end
 
 end

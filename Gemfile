@@ -32,6 +32,8 @@ gem "active_model_serializers"
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker'
 gem 'rack-cors'
+gem "bcrypt", "~> 3.1.1"
+gem "rails_same_site_cookie"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

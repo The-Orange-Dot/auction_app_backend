@@ -9,21 +9,23 @@ module AuctionAppBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.api_only = true    
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_namespace_key'
+    # config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
+
+
+    # config.action_dispatch.cookies_same_site_protection = :strict
+    config.action_dispatch.cookies_same_site_protection = :none
+
   end
   
 
   #CORS security, change "origins" if you want to change location
   Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins 'http://localhost:3001'
+      origins '*'
       resource '*', headers: :any, methods: [:get, :post, :delete, :patch]
     end
   end
