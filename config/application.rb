@@ -12,21 +12,23 @@ module AuctionAppBackend
     config.api_only = true    
 
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: '_namespace_key'
-    # config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
+    config.middleware.use ActionDispatch::Session::CookieStore
 
-
-    # config.action_dispatch.cookies_same_site_protection = :strict
-    config.action_dispatch.cookies_same_site_protection = :none
+    config.action_dispatch.cookies_same_site_protection = :strict
 
   end
   
 
-  #CORS security, change "origins" if you want to change location
-  Rails.application.config.middleware.insert_before 0, Rack::Cors do
-    allow do
-      origins '*'
-      resource '*', headers: :any, methods: [:get, :post, :delete, :patch]
-    end
-  end
+  # CORS security, change "origins" if you want to change location
+  # Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  #   allow do
+  #     origins '*'
+  #       resource '/orders',
+  #       :headers => :any,
+  #       :methods => [:post]
+  #     resource '/users',
+  #       headers: :any,
+  #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  #   end
+  # end
 end

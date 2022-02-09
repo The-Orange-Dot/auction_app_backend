@@ -3,18 +3,18 @@ class SessionsController < ApplicationController
 
   # login controller
   def create
-    reset_session
     user = User.find_by(username: params[:username])
     if user
       # session[:user_id] ||= user.id
-      # cookies[:user_id] = user.id
+      cookies.signed[:user_id] ||= user.id
       # session[:user_id] = user.id
       session[:user_id] ||= user.id
 
       puts "SessionController: #{session}"
+      puts "SessionController: #{session[:user_id]}"
+      
       puts "SessionController: #{user}"
-
-      render json: user
+      render json: { session: session, cookies: cookies.to_hash }, status: :ok
     else
       render json: {errors: "That username does not exist"}, status: :unauthorized
     end

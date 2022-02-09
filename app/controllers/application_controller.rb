@@ -1,6 +1,4 @@
-class ApplicationController < ActionController::API
-  protect_from_forgery = false
-  
+class ApplicationController < ActionController::API  
   include ActionController::Cookies
   include Response
   include ExceptionHandler

@@ -7,14 +7,15 @@ class UsersController < ApplicationController
 
   #WHYYYYYYY NO WORRRRK
   def show
-    puts "UserController: #{session}"
-    puts "UserControllerCookies: #{session[:user_id]}"
-    user = User.find_by(id: session[:user_id])
+    puts "UserController: #{request.headers}"
+    puts "UserControllerSession: #{session[:user_id]}"
+    puts "UserControllerHeaders: #{request.headers["user-id"]}"
+    user = User.find_by(id: request.headers["user-id"])
     # user = User.find_by(id: params[:id])
     if user
-      render json: user, include: [:products]
+      render json: user, include: [:products], status: :ok
     else
-      render json: {error: "User could not be found."}
+      render json: {error: "User could not be found."}, status: :not_found
     end
   end
 
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
       user.update(points: user.points - ticket_value, tickets_bought: user.tickets_bought + 1)
       product.update(ticketsRemaining: product.ticketsRemaining - 1, buyers: buyers)
       product.ticketsRemaining == 0 ? product.update(finished: 1, winner: winner) : nil
-      render json: Product.all, include: [:user]
+      render json: Product.all, include: [:user], status: :ok
     elsif user.points < ticket_value
       puts "Not enough points"
     else 

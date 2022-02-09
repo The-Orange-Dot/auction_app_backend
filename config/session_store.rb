@@ -1,1 +1,0 @@
-AuctionAppBackend::Application.config.session_store :cookie_store, key: '_auction_app_backend_session'

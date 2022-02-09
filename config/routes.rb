@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   patch "users/buy_ticket/:id" => "users#buy_ticket"
   patch "users/charge_points/:id" => "users#charge_points"
-  get "/user" => "users#show"
+  get "user" => "users#show"
 
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#destroy"
