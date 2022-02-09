@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :show
 
   # def index 
   #   render json: User.all, include: [:products]
@@ -13,7 +12,7 @@ class UsersController < ApplicationController
     user = User.find_by(id: request.headers["user-id"])
     # user = User.find_by(id: params[:id])
     if user
-      render json: user, include: [:products], status: :ok
+      render json: user, status: :ok
     else
       render json: {error: "User could not be found."}, status: :not_found
     end
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
 
   def buy_ticket
     user = find_user
-    product = Product.all.find(params[:product_id])
+    product = Product.all.find_by(id: params[:product_id])
     ticket_value = product.price / product.tickets
 
     buyers = product.buyers == nil ? "#{user.id}" : "#{product.buyers}, #{user.id}"
