@@ -6,10 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:username])
     if user
       # session[:user_id] ||= user.id
-      cookies.signed[:user_id] ||= user.id
+      cookies.signed[:user_id] ||= 25
       # session[:user_id] = user.id
-      session[:user_id] ||= user.id
-
+      session[:user_id] ||= 25
       puts "SessionController: #{session}"
       puts "SessionController: #{session[:user_id]}"
       
