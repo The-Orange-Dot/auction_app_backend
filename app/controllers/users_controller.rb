@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     user = User.find_by(id: request.headers["user-id"])
     # user = User.find_by(id: params[:id])
     if user
-      render json: user, status: :ok
+      render json: user, exclude: [:password] ,status: :ok
     else
       render json: {error: "User could not be found."}, status: :not_found
     end
