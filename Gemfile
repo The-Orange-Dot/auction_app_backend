@@ -7,7 +7,7 @@ ruby '3.0.0'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
-gem "pg"
+gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -32,7 +32,7 @@ gem "active_model_serializers"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker'
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 gem "bcrypt", "~> 3.1.1"
 gem "rails_same_site_cookie"
 
