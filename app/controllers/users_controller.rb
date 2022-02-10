@@ -7,11 +7,7 @@ class UsersController < ApplicationController
   #WHYYYYYYY NO WORRRRK
   def show
     cookies[:user] = request.headers["user"]
-    # puts "UserController: #{cookies.encrypted[test]}"
-    # puts "UserControllerCookies: #{cookies.encrypted[:user_id]}"
-    # puts "UserControllerHeaders: #{request.headers["user"]}"
     user = User.find_by(id: cookies.encrypted[:user])
-    # user = User.find_by(id: params[:id])
     if user
       render json: user, status: :ok
     else
@@ -31,7 +27,7 @@ class UsersController < ApplicationController
   def charge_points
     if (params[:points_id] == 1 && params[:charge] == 500) || (params[:points_id] == 2 && params[:charge] == 1000) || (params[:points_id] == 3 && params[:charge] == 5000)
       user = find_user
-      render json: user.update(points: user.points + params[:charge])
+      render json: user.update(points: user.points + params[:charge]), serializer: UserSerializer, status: :ok
     else
       puts "Invalid id and points"
     end
