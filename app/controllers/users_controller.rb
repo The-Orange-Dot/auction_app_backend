@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     # puts "UserController: #{cookies.encrypted[test]}"
     puts "UserControllerCookies: #{cookies.encrypted[:user_id]}"
     puts "UserControllerHeaders: #{request.headers["user-id"]}"
-    user = User.find_by(id: request.headers["user-id"])
+    user = User.find_by(id: cookies.encrypted[:user_id])
     # user = User.find_by(id: params[:id])
     if user
       render json: user, status: :ok
