@@ -48,7 +48,10 @@ class UsersController < ApplicationController
     if user.points > ticket_value && product.finished == false
       user.update(points: user.points - ticket_value, tickets_bought: user.tickets_bought + 1)
       product.update(ticketsRemaining: product.ticketsRemaining - 1, buyers: buyers)
-      product.ticketsRemaining == 0 ? product.update(finished: 1, winner: winner) : nil
+       if product.ticketsRemaining == 0  
+        product.update(finished: 1, winner: winner)
+        product.user.update(points: product.user.points + product.price)
+       end
       render json: Product.all, include: [:user], status: :ok
     elsif user.points < ticket_value
       puts "Not enough points"
