@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
         value: user.id,
         domain: URI(ENV['HOST']).host,
         expires: 1.day
+      }
 
       puts "SessionController: #{session}"
       puts "SessionController: #{session[:user_id]}"
