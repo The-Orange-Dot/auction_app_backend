@@ -8,7 +8,7 @@ validates :price, numericality: {greater_than_or_equal_to: 1000}
 validates :tickets, presence: true
 validates :tickets, numericality: {in: 3..50}
 validates :description, length: {maximum: 300}
-validates :description, resence: true
+validates :description, presence: true
 validates :descriptionPreview, length: {maximum: 120}
 validates :descriptionPreview, presence: truess
 validates :keywords, length: {maximum: 50}
