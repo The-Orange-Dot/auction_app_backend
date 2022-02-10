@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.create!(user_params)
-    render json: user
+    render json: user, status: :created
   rescue ActiveRecord::RecordInvalid => invalid
     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
   end
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:firstName, :lastName, :email, :username, :password, :dob, :picture)
+    params.permit(:firstName, :lastName, :email, :username, :password, :passwordConfirmation, :dob, :picture)
   end
 
 end

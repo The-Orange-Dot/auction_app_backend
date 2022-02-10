@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # has_secure_password
+  has_secure_password
   has_many :products
 
   validates :email, uniqueness:  { message: " is already in use"}
