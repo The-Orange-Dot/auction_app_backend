@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       cookies[:user_id] = {
         value: user.id,
-        domain: URI(ENV['http://localhost:3000/']).host,
+        domain: :all,
         expires: 1.day
       }
 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       puts "SessionController: #{session[:user_id]}"
       puts "SessionController: #{user}"
 
-      render json: { session: session, cookies: cookies}, status: :ok
+      render json: { session: session, cookies: cookies.to_hash }, status: :ok
     else
       render json: {errors: "That username does not exist"}, status: :unauthorized
     end
