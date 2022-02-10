@@ -5,9 +5,13 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(username: params[:username])
     if user
-      cookies.signed[:user_id] ||= user.id
+      # cookies.signed[:user_id] ||= user.id
       session[:user_id] ||= 0
       session[:user_id] = user.id
+      cookies[:user_id] = {
+        value: user.id,
+        domain: URI(ENV['HOST']).host,
+        expires: 1.day
 
       puts "SessionController: #{session}"
       puts "SessionController: #{session[:user_id]}"
