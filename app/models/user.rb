@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :password, numericality: {greater_than_or_equal_to: 8, message: "Password must be at least 8 characters long"}
   validates :password, presence: true
-  validates :username, numericality: {in: 6..15, message: "Username must be between 6 - 15 characters long"}
+  validates :username, numericality: {in: 6..15, message: " must be between 6 - 15 characters long"}
 
 
 
