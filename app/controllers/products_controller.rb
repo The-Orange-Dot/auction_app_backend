@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   def destroy
     item = Product.find_by(id: params[:id])
     if item
-      if item.buyers.length != 0
+      if item.buyers.length != 0 || !nil
         buyer_array = item.buyers.split(", ")
         buyers_array_int = buyer_array.map{|i| i.to_i}
         buyers_array_int.buyers.each do |user_id|
