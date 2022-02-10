@@ -6,9 +6,8 @@ class UsersController < ApplicationController
 
   #WHYYYYYYY NO WORRRRK
   def show
-    test = request.headers["cookies"]
-    puts test
-    puts "UserController: #{cookies.encrypted[test]}"
+    cookies[:user_id] = request.headers["user-id"]
+    # puts "UserController: #{cookies.encrypted[test]}"
     puts "UserControllerCookies: #{cookies.encrypted[:user_id]}"
     puts "UserControllerHeaders: #{request.headers["user-id"]}"
     user = User.find_by(id: request.headers["user-id"])
