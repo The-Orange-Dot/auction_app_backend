@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   #WHYYYYYYY NO WORRRRK
   def show
-    test = request.headers["user-id"]
+    test = request.headers["cookies"]
     puts "UserController: #{cookies.encrypted[test]}"
     puts "UserControllerCookies: #{cookies.encrypted[:user_id]}"
     puts "UserControllerHeaders: #{request.headers["user-id"]}"
