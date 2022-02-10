@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
         buyers_array_int.each do |user_id|
           user = User.find_by(id: user_id)
           user.points += item.price / item.tickets
+          user.update(points: user.points)
         end
       end
     item.destroy
