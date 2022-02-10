@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :username, uniqueness: { message: "%{value} has already been taken"}
   validates :username, presence: true
-  validates :password, length: {minimum: 8, message: " must be at least 8 characters long"}
-  validates :password, presence: true
+  validates :password, length: {minimum: 8, message: " must be at least 8 characters long"}, on: :create
+  validates :password, presence: true, on: :create
   validates :username, length: {in: 6..15, message: " must be between 6 - 15 characters long"}
-  
+
   def target_id
     self.id
   end
