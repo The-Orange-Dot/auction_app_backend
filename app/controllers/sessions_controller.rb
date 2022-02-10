@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       # cookies.signed[:user_id] ||= user.id
       session[:user_id] ||= 0
       session[:user_id] = user.id
-      cookies[:user_id] = {
+      cookies.encrypted[:user_id] = {
         value: user.id,
         domain: :all,
         expires: 1.day
