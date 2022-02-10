@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
 
-
   # def index 
   #   render json: User.all, include: [:products]
   # end
 
   #WHYYYYYYY NO WORRRRK
   def show
-    cookie = request.headers["user-id"][0...160]
-    puts request.headers["user-id"]
-    puts cookie
-    cookies[:user_id] = request.headers["user-id"][0...160]
+    cookies[:user_id] = request.headers["user-id"]
     # puts "UserController: #{cookies.encrypted[test]}"
     # puts "UserControllerCookies: #{cookies.encrypted[:user_id]}"
     # puts "UserControllerHeaders: #{request.headers["user-id"]}"

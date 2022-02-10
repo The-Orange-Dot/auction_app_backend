@@ -5,8 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(username: params[:username])
     if user
-      salt = BCrypt::Engine::generate_salt
-
+      
       # cookies.signed[:user_id] ||= user.id
       session[:user_id] ||= 0
       session[:user_id] = user.id
@@ -20,7 +19,7 @@ class SessionsController < ApplicationController
       puts "SessionController: #{session[:user_id]}"
       puts "SessionController: #{user}"
 
-      render json: { cookies: cookies.to_hash + salt }, status: :ok
+      render json: { cookies: cookies.to_hash }, status: :ok
     else
       render json: {errors: "That username does not exist"}, status: :unauthorized
     end
