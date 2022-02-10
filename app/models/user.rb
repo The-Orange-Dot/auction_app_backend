@@ -9,11 +9,7 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 8, message: " must be at least 8 characters long"}
   validates :password, presence: true
   validates :username, length: {in: 6..15, message: " must be between 6 - 15 characters long"}
-
-
-
-  # This breaks the charge_points controller for some reason
-
+  
   def target_id
     self.id
   end

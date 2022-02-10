@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       }
       render json: { cookies: cookies.to_hash }, status: :ok
     else
-      render json: {errors: "That username does not exist"}, status: :unauthorized
+      render json: {errors: user.record.errors.full_messages}, status: :unauthorized
     end
   end
 
