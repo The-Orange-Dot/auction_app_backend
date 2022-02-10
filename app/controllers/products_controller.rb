@@ -28,7 +28,9 @@ class ProductsController < ApplicationController
     item = Product.find_by(id: params[:id])
     if item
       if item.buyers.length != 0
-        item.buyers.each do |user_id|
+        buyer_array = item.buyers.split(", ")
+        buyers_array_int = buyer_array.map{|i| i.to_i}
+        buyers_array_int.buyers.each do |user_id|
           user = User.find_by(id: user_id)
           user.points += item.price / tickets
         end
