@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     cookies[:user] = request.headers["user"]
     # puts "UserController: #{cookies.encrypted[test]}"
     # puts "UserControllerCookies: #{cookies.encrypted[:user_id]}"
-    # puts "UserControllerHeaders: #{request.headers["user-id"]}"
+    puts "UserControllerHeaders: #{request.headers["user"]}"
     user = User.find_by(id: cookies.encrypted[:user])
     # user = User.find_by(id: params[:id])
     if user
