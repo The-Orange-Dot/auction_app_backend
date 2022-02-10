@@ -20,10 +20,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create!(user_params)
-    render json: user, status: :created
-  rescue ActiveRecord::RecordInvalid => invalid
-    render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    user = User.create(user_params)
+    if user.valid?
+      render json: user, status: :created
+    else
+      render json: {errors: user.record.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def charge_points
