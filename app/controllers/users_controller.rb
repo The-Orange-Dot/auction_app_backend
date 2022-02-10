@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def charge_points
     if (params[:points_id] == 1 && params[:charge] == 500) || (params[:points_id] == 2 && params[:charge] == 1000) || (params[:points_id] == 3 && params[:charge] == 5000)
       user = find_user
-      render json: user.update(points: user.points + params[:charge]), serializer: UserSerializer, status: :ok
+      render json: user.update(points: user.points + params[:charge]), status: :ok
     else
       puts "Invalid id and points"
     end
