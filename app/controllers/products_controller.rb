@@ -25,8 +25,16 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    item = Product.all.find(params[:id])
+    item = Product.find_by(id: params[:id])
+    if item
+      if item.buyers.lenth != 0
+        item.buyers.each do |user_id|
+          user = User.find_by(id: user_id)
+          user.points += item.price / tickets
+        end
+      end
     item.destroy
+    end
     render json: item
   end
 
