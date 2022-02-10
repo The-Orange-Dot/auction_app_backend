@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
         buyers_array_int = buyer_array.map{|i| i.to_i}
         buyers_array_int.each do |user_id|
           user = User.find_by(id: user_id)
-          user.points += item.price / tickets
+          user.points += item.price / item.tickets
         end
       end
     item.destroy
