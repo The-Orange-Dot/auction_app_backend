@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     cookies[:user] = request.headers["user"]
     # puts "UserController: #{cookies.encrypted[test]}"
     # puts "UserControllerCookies: #{cookies.encrypted[:user_id]}"
-    puts "UserControllerHeaders: #{request.headers["user"]}"
+    # puts "UserControllerHeaders: #{request.headers["user"]}"
     user = User.find_by(id: cookies.encrypted[:user])
     # user = User.find_by(id: params[:id])
     if user
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:firstName, :lastName, :email, :username, :password, :passwordConfirmation, :dob, :picture)
+    params.permit(:firstName, :lastName, :email, :username, :password, :password_confirmation, :dob, :picture)
   end
 
 end
