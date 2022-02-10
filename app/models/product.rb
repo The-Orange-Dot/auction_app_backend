@@ -10,7 +10,7 @@ validates :tickets, numericality: {in: 3..50}
 validates :description, length: {maximum: 300}
 validates :description, presence: true
 validates :descriptionPreview, length: {maximum: 120}
-validates :descriptionPreview, presence: truess
+validates :descriptionPreview, presence: true
 validates :keywords, length: {maximum: 50}
 
 
