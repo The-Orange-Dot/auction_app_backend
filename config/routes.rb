@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   post "users/buy_ticket/:id" => "users#buy_ticket"
   post "users/charge_points/:id" => "users#charge_points"
+  post "users/edit_info/:id" => "users#update"
 
   get "user" => "users#show"
 
