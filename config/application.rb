@@ -9,7 +9,8 @@ module AuctionAppBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    config.api_only = true    
+    config.api_only = true  
+    config.hosts.clear  
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
