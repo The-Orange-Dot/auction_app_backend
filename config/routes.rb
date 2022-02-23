@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :products, except: [:update, :show]
   resource :sessions, only: [:create, :destroy]
 
-  patch "users/buy_ticket/:id" => "users#buy_ticket"
+  post "users/buy_ticket/:id" => "users#buy_ticket"
   patch "users/charge_points/:id" => "users#charge_points"
   get "user" => "users#show"
 
