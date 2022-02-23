@@ -65,6 +65,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    user = find_user
+    if user
+      user.update!(account_params)
+      render json: user, status: :ok
+    else
+      render json: {error: "User not found"}, status: :not_found
+    end
+  end
+
   private
 
   def find_user
@@ -73,6 +83,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:firstName, :lastName, :email, :username, :password, :password_confirmation, :dob, :picture)
+  end
+
+  def account_params
+    params.permit(:firstName, :lastName, :email, :address, :billing_address, :id)
   end
 
 end
