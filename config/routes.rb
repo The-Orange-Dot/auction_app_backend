@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resource :sessions, only: [:create, :destroy]
 
   post "users/buy_ticket/:id" => "users#buy_ticket"
-  patch "users/charge_points/:id" => "users#charge_points"
+  post "users/charge_points/:id" => "users#charge_points"
   get "user" => "users#show"
 
   post "/login" => "sessions#create"
