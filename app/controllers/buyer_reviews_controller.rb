@@ -1,6 +1,6 @@
 class BuyerReviewsController < ApplicationController
   def index
-    render json: BuyerReview.all, status: :ok
+    render json: BuyerReview.all, include: [:seller], status: :ok
   end
 
   def create
