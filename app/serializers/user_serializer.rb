@@ -3,7 +3,7 @@ class UserSerializer < ActiveModel::Serializer
 
 def seller_reviews
   reviews = SellerReview.all.filter{|review| review.user_id == self.object.id}
-  reviews.map{|review| review.buyer_id = User.find(review.buyer_id)
+  reviews.map{|review| review.buyer_id = User.find(review.buyer_id)}
 end
 
 def buyer_reviews
