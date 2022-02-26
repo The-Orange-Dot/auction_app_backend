@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :buyer_reviews, only: [:create, :index]
   resources :seller_reviews, only: [:create, :index]
-  resources :users, only: [:create, :user, :update]
+  resources :users, only: [:index, :create, :user, :update]
   resources :products, except: [:update, :show]
   resource :sessions, only: [:create, :destroy]
 
