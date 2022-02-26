@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :user
+  has_one :seller_review, through: :user
+  has_one :buyer_review, through: :user
 
 validates :name, presence: true
 validates :name, length: {maximum: 35}

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  # def index 
-  #   render json: User.all, include: [:products]
-  # end
+  def index 
+    render json: User.all
+  end
 
   #WHYYYYYYY NO WORRRRK
   def show

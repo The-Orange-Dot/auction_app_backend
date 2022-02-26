@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_164131) do
+ActiveRecord::Schema.define(version: 2022_02_26_055339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buyer_reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "rating"
+    t.string "review"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_buyer_reviews_on_product_id"
+    t.index ["user_id"], name: "index_buyer_reviews_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "category"
@@ -31,6 +42,17 @@ ActiveRecord::Schema.define(version: 2022_02_16_164131) do
     t.string "buyers"
     t.boolean "finished", default: false
     t.integer "winner", default: 0
+  end
+
+  create_table "seller_reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.string "review", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating"
+    t.index ["product_id"], name: "index_seller_reviews_on_product_id"
+    t.index ["user_id"], name: "index_seller_reviews_on_user_id"
   end
 
   create_table "user_buyer_and_seller_rankings", force: :cascade do |t|
@@ -63,4 +85,8 @@ ActiveRecord::Schema.define(version: 2022_02_16_164131) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "buyer_reviews", "products"
+  add_foreign_key "buyer_reviews", "users"
+  add_foreign_key "seller_reviews", "products"
+  add_foreign_key "seller_reviews", "users"
 end

@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :products
+  has_many :seller_reviews, through: :products
+  has_many :buyer_reviews, through: :products
 
   validates :email, uniqueness:  { message: " is already in use"}
   validates :email, presence: true
