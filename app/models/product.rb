@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   has_one :buyer_review
 
 validates :name, presence: true
-validates :name, length: {maximum: 35}
+validates :name, length: {maximum: 40}
 validates :category, presence: true
 validates :price, presence: true
 validates :price, numericality: {greater_than_or_equal_to: 1000}
