@@ -15,6 +15,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def find_winner
+    user = User.find_by(id: params[:id])
+    if user
+      render json: user, status: :ok
+    else
+      render json: {error: "User could not be found."}, status: :not_found
+    end
+  end
+
   def create
     user = User.create(user_params)
     if user.valid?
