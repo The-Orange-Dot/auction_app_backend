@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     user = find_user
     product = Product.all.find_by(id: params[:product_id])
     ticket_value = product.price / product.tickets
-    tickets_remaining = params[:tickets_remaining] - 1
+    tickets_remaining = (params[:tickets_remaining].to_i - 1)
 
     buyers = product.buyers == nil ? "#{user.id}" : "#{product.buyers}, #{user.id}"
     split_buyers = buyers.split(", ")
