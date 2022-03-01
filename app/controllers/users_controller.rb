@@ -43,7 +43,6 @@ class UsersController < ApplicationController
     user = find_user
     product = Product.all.find_by(id: params[:product_id])
     ticket_value = product.price / product.tickets
-    tickets_remaining = (params[:tickets_remaining].to_i - 1)
 
     buyers = product.buyers == nil ? "#{user.id}" : "#{product.buyers}, #{user.id}"
     split_buyers = buyers.split(", ")
@@ -53,7 +52,7 @@ class UsersController < ApplicationController
 
     if user.points > ticket_value && product.finished == false
       user.update(points: user.points - ticket_value, tickets_bought: user.tickets_bought + 1)
-      product.update(ticketsRemaining: tickets_remaining, buyers: buyers)
+      product.update(ticketsRemaining: (product.ticketsRemaining - 1), buyers: buyers)
        if product.ticketsRemaining == 0  
         product.update(finished: 1, winner: winner)
         product.user.update(points: product.user.points + product.price)
